@@ -1,2 +1,2 @@
-# My-Wigets-Tkinter
- Meus upgrades nos wigets base da biblioteca do tkinter
+# My-Widgets-Tkinter
+ Meus upgrades nos widgets base da biblioteca do tkinter
