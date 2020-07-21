@@ -7,7 +7,7 @@ class entry_Valition(Entry):
         Pode setar um texto,font e cor para aparecer antes da entry ganhar o foco
     
     - Parametros font e fontcollor
-        Pode setar uma font e cor diferentes das padro es
+        Pode setar uma font e cor diferentes das padroes
     
     -Validar
         Na fucao verifica se o texto possui:
