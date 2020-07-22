@@ -3,6 +3,5 @@ from Widgets import Chat as c
 
 screen = Tk()
 screen.geometry('600x500+250+250')
-c.Chat(screen)
-
+c.Chat(screen , user = 'Yuki')
 screen.mainloop()
