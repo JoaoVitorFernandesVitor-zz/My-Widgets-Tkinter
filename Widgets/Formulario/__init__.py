@@ -1,14 +1,36 @@
 from tkinter import *
-
-tela = Tk()
+import json
 class Formulario(Frame):
-        def __init__(self, parent):
+        def __init__(self):
         #Propriedades do Formulario
-
+            super().__init__()
             #Variables from RadioButtons
             gender = StringVar()
             formation = StringVar()
             title_font =  'Arial 20'
+
+
+            def __save():
+                years = years_entry.get()
+                name = name_entry.get()
+                profession = profession_entry.get()
+                nationality = nationality_entry.get()
+                email = email_entry.get()
+                gender_ = gender.get()
+                formation_ = formation.get()
+
+                dados = {name :{
+                'years_old' : years,
+                'gender': gender_,
+                'profession': profession,
+                'nationality': nationality,
+                'formation': formation_,
+                'email': email
+                }}
+                dados_user = json.dumps(dados)
+                with open('B_dados.json', 'w') as file :
+                    file.write(dados_user)
+
             #Dados Privados
             name_entry = Entry(self)
             name_text  = Label(self, text = 'Your Name', font = title_font)
@@ -59,6 +81,8 @@ class Formulario(Frame):
 
             email_text.grid(row = 11, column = 0, stick = W)
             email_entry.grid(row = 11, columnspan = 2, column = 1, stick = W)
-            
-            self.grid(parent)
-tela.mainloop()
+
+            #Save Button
+            save_bt = Button(self, text = 'Save', command = __save).grid()
+        
+
