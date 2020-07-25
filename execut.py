@@ -1,9 +1,9 @@
 from tkinter import *
-from Widgets import Formulario as f
+from Widgets import Chat as f
 
 screen = Tk()
 screen.geometry('600x500+250+250')
 
-a = f.Formulario().grid()
+f.Chat('Yuki').grid()
 
 screen.mainloop()

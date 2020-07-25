@@ -1,7 +1,16 @@
 from tkinter import *
- 
+import json
+Chat_dados = {'Yuki':{'mensage_for_IA' :[
+    ['Yuki','->Hi'],
+    ['IA','->Helo']
+]
+}}
+a = json.dumps(Chat_dados, indent = True)
+with open('Chat.json', 'w') as file:
+    file.write(a)
+
 class Chat(Frame):
-    def __init__(self,parent,user):
+    def __init__(self,user):
         super().__init__()
         #Propriedades do Frame do Chat
         self['bd']= 5
@@ -12,8 +21,13 @@ class Chat(Frame):
             text_chat['state'] = NORMAL
             text_send = f'{user}->{entry_chat.get()}\n'
             text_chat.insert(END,text_send)
+            try:
+                Chat_dados[user]['mensage_for_IA'] += [user,f'->{entry_chat.get()}']
+                
+            except:
+                Chat_dados[user] = {'mensage_for_IA': []}
             text_chat['state'] = DISABLED
-        
+            
         
         #Widgets internos
         title_chat = Label(self, text = 'Fon Chat' , font = 'System 20' , bg = '#02e0a6')
@@ -26,4 +40,11 @@ class Chat(Frame):
         text_chat.grid(row = 1 , column = 0, columnspan = 2)
         entry_chat.grid(row = 2, ipadx = 100, ipady = 5, sticky = W+E+N+S)
         send_button.grid(row = 2, column = 1 , ipadx = 5 , ipady = 5 , sticky = W+E)
-        self.grid()
+
+        text_chat['state'] = NORMAL
+        for item in  Chat_dados[user]['mensage_for_IA']:
+            if item[0] == user:
+                text_chat.insert(END,f'{item[0]}{item[1]}\n'.replace("'",'').replace(']',"").replace('[','').replace(',',''))
+            else:
+                continue
+        text_chat['state'] = DISABLED
